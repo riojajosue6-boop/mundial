@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundial 2026 - Transmisiones en Vivo</title>
+    
+    <style>
+        :root {
+            --primary-color: #0d1b2a;
+            --secondary-color: #1b263b;
+            --accent-color: #e0a96d;
+            --text-color: #ffffff;
+            --modal-btn-color: #2563eb; /* Azul llamativo como el de tu imagen */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* --- ESTILOS DE LA VENTANA DE BIENVENIDA (MODAL) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 27, 42, 0.85); /* Fondo oscuro transparente */
+            backdrop-filter: blur(8px); /* Efecto difuminado al fondo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Asegura que esté por encima de todo */
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-box {
+            background-color: rgba(27, 38, 59, 0.95);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 35px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            animation: popIn 0.4s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-title {
+            color: var(--text-color);
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .modal-title span {
+            color: var(--accent-color);
+        }
+
+        .modal-text {
+            color: #dddddd;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .modal-btn {
+            background-color: var(--modal-btn-color);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        /* --- ESTILOS DE LA PÁGINA PRINCIPAL --- */
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #cccccc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .group-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .group-title {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .team-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .team-item {
+            margin: 10px 0;
+        }
+
+        .btn-redirect {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(255,255,255,0.05);
+            color: var(--text-color);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .btn-redirect:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #777777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay" id="welcomeModal">
+        <div class="modal-box">
+            <h2 class="modal-title">¡Bienvenido a <span>MundoPartidos</span>! 🌐</h2>
+            <p class="modal-text">
+                El directorio definitivo para ver todos los partidos del <b>Mundial 2026</b> en vivo. 
+                Enlaces 100% verificados y transmisiones gratuitas en alta calidad.
+            </p>
+            <button class="modal-btn" onclick="cerrarBienvenida()">
+                🚀 Ingresar al Directorio
+            </button>
+        </div>
+    </div>
+
+    <header>
+        <h1>🏆 Mundial 2026 🏆</h1>
+        <p>Selecciona el país de tu partido para ir directo a la transmisión en vivo de forma gratuita</p>
+    </header>
+
+    <div class="container" id="groups-container">
+        </div>
+
+    <footer>
+        <p>&copy; 2026 - Directorio de Transmisiones Deportivas</p>
+    </footer>
+
+    <script>
+        // Enlace de destino único para los partidos
+        const REDIRECT_URL = "https://futbol-libres.su/";
+
+        // Configuración oficial de los 48 equipos clasificados por Grupo
+        const mundialData = [
+            { name: "Grupo A", teams: ["México", "Sudáfrica", "Corea del Sur", "República Checa"] },
+            { name: "Grupo B", teams: ["Canadá", "Bosnia-Herzegovina", "Qatar", "Suiza"] },
+            { name: "Grupo C", teams: ["Brasil", "Marruecos", "Haití", "Escocia"] },
+            { name: "Grupo D", teams: ["Estados Unidos", "Paraguay", "Australia", "Turquía"] },
+            { name: "Grupo E", teams: ["Alemania", "Curazao", "Costa de Marfil", "Ecuador"] },
+            { name: "Grupo F", teams: ["Países Bajos", "Japón", "Suecia", "Túnez"] },
+            { name: "Grupo G", teams: ["Bélgica", "Egipto", "Irán", "Nueva Zelanda"] },
+            { name: "Grupo H", teams: ["España", "Cabo Verde", "Arabia Saudita", "Uruguay"] },
+            { name: "Grupo I", teams: ["Francia", "Senegal", "Irak", "Noruega"] },
+            { name: "Grupo J", teams: ["Argentina", "Argelia", "Austria", "Jordania"] },
+            { name: "Grupo K", teams: ["Portugal", "RD Congo", "Uzbekistán", "Colombia"] },
+            { name: "Grupo L", teams: ["Inglaterra", "Croacia", "Ghana", "Panamá"] }
+        ];
+
+        const container = document.getElementById('groups-container');
+
+        // Función para cerrar la bienvenida (¡Aquí actúa Monetag!)
+        function cerrarBienvenida() {
+            const modal = document.getElementById('welcomeModal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+
+            // 🟢 OPCIONAL: Si estás usando Smart Tags o Popunders que requieran un trigger manual por JS:
+            // miScriptDeMonetag();
+        }
+
+        // Función para redirigir a los partidos
+        function irAlPartido() {
+            window.location.href = REDIRECT_URL;
+        }
+
+        // Renderizar la interfaz
+        mundialData.forEach(grupo => {
+            const groupCard = document.createElement('div');
+            groupCard.className = 'group-card';
+
+            const title = document.createElement('h3');
+            title.className = 'group-title';
+            title.innerText = grupo.name;
+            groupCard.appendChild(title);
+
+            const list = document.createElement('ul');
+            list.className = 'team-list';
+
+            grupo.teams.forEach(team => {
+                const item = document.createElement('li');
+                item.className = 'team-item';
+
+                const button = document.createElement('button');
+                button.className = 'btn-redirect';
+                button.innerText = team;
+                button.onclick = irAlPartido;
+
+                item.appendChild(button);
+                list.appendChild(item);
+            });
+
+            groupCard.appendChild(list);
+            container.appendChild(groupCard);
+        });
+    </script>
+</body>
+</html>
