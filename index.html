@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundial 2026 - Transmisiones en Vivo</title>
-    
     <style>
         :root {
             --primary-color: #0d1b2a;
             --secondary-color: #1b263b;
             --accent-color: #e0a96d;
             --text-color: #ffffff;
-            --modal-btn-color: #2563eb; /* Azul llamativo como el de tu imagen */
+            --modal-btn-color: #2563eb;
         }
 
         body {
@@ -30,12 +29,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(13, 27, 42, 0.85); /* Fondo oscuro transparente */
-            backdrop-filter: blur(8px); /* Efecto difuminado al fondo */
+            background: rgba(13, 27, 42, 0.85);
+            backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999; /* Asegura que esté por encima de todo */
+            z-index: 9999;
             transition: opacity 0.3s ease;
         }
 
@@ -205,7 +204,7 @@
     </footer>
 
     <script>
-        // Enlace de destino único para los partidos
+        // Enlace de destino único para las transmisiones de fútbol
         const REDIRECT_URL = "https://futbol-libres.su/";
 
         // Configuración oficial de los 48 equipos clasificados por Grupo
@@ -226,7 +225,7 @@
 
         const container = document.getElementById('groups-container');
 
-        // Función para cerrar la bienvenida (¡Aquí actúa Monetag!)
+        // Función para cerrar el aviso y abrir la publicidad de Monetag
         function cerrarBienvenida() {
             const modal = document.getElementById('welcomeModal');
             modal.style.opacity = '0';
@@ -234,16 +233,16 @@
                 modal.style.display = 'none';
             }, 300);
 
-            // 🟢 OPCIONAL: Si estás usando Smart Tags o Popunders que requieran un trigger manual por JS:
-            // miScriptDeMonetag();
+            // Abre tu enlace directo de Monetag en una pestaña nueva
+            window.open("https://omg10.com/4/11061922", "_blank");
         }
 
-        // Función para redirigir a los partidos
+        // Función para redirigir a los partidos al hacer clic en un país
         function irAlPartido() {
             window.location.href = REDIRECT_URL;
         }
 
-        // Renderizar la interfaz
+        // Renderizar la interfaz de forma dinámica
         mundialData.forEach(grupo => {
             const groupCard = document.createElement('div');
             groupCard.className = 'group-card';
